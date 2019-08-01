@@ -56,11 +56,23 @@ export default function initialize() {
     camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
   });
 
+  function updateScene() {
+    if (arToolkitSource.ready) {
+      arToolkitContext.update(arToolkitSource.domElement);
+    }
+  }
+
+  function render() {
+    renderer.render(scene, camera);
+  }
+
   return {
     scene,
     camera,
     renderer,
     arToolkitSource,
-    arToolkitContext
+    arToolkitContext,
+    updateScene,
+    render
   };
 }
