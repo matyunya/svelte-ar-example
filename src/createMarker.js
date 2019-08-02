@@ -26,8 +26,7 @@ export default function createMarker(ctx, model) {
         .setMaterials(materials)
         .setPath("models/")
         .load(`${title}.obj`, function(group) {
-          mesh = group.children[0];
-          mesh.material.side = THREE.DoubleSide;
+          mesh = group;
           mesh.position.y = 0.25;
 
           mesh.rotation.x = -Math.PI / 2;

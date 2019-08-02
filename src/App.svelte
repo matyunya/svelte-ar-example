@@ -6,7 +6,8 @@
 
   const ctx = createScene();
 
-  const updateMarkerSmooth = createMarker(ctx, { title: "plane", marker: "hiro" });
+  createMarker(ctx, { title: "plane", marker: "8" });
+  createMarker(ctx, { title: "lighthouse", marker: "13" });
 
   animate();
 
@@ -14,7 +15,6 @@
     // if (stop) return;
 
     ctx.updateScene();
-    updateMarkerSmooth();
   }
 
   function animate() {

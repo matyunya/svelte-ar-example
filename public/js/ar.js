@@ -5768,7 +5768,7 @@ ARjs.Profile.prototype.changeMatrixMode = function (changeMatrixMode) {
 //////////////////////////////////////////////////////////////////////////////
 ARjs.Profile.prototype.trackingMethod = function (trackingMethod) {
 	var data = ARjs.Utils.parseTrackingMethod(trackingMethod)
-	this.defaultMarkerParameters.markersAreaEnabled = data.markersAreaEnabled
+	this.defaultMarkerParameters.markersAreaEnabled = false
 	this.contextParameters.trackingBackend = data.trackingBackend	
 	return this
 }
