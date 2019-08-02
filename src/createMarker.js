@@ -1,4 +1,8 @@
-export default function createMarker({ scene, arToolkitContext, camera }) {
+export default function createMarker(ctx, model) {
+  const { scene, arToolkitContext, camera } = ctx;
+
+  const { title, marker } = model;
+
   let mesh;
 
   const markerRoot = new THREE.Group();
@@ -8,7 +12,7 @@ export default function createMarker({ scene, arToolkitContext, camera }) {
     markerRoot,
     {
       type: "pattern",
-      patternUrl: "data/hiro.patt"
+      patternUrl: `data/${marker}.patt`
     }
   );
 
@@ -16,12 +20,12 @@ export default function createMarker({ scene, arToolkitContext, camera }) {
 
   new THREE.MTLLoader()
     .setPath("models/")
-    .load("plane2.mtl", function(materials) {
+    .load(`${title}.mtl`, function(materials) {
       materials.preload();
       new THREE.OBJLoader()
         .setMaterials(materials)
         .setPath("models/")
-        .load("plane2.obj", function(group) {
+        .load(`${title}.obj`, function(group) {
           mesh = group.children[0];
           mesh.material.side = THREE.DoubleSide;
           mesh.position.y = 0.25;

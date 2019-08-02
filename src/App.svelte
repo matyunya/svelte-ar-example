@@ -6,7 +6,7 @@
 
   const ctx = createScene();
 
-  const updateMarkerSmooth = createMarker(ctx);
+  const updateMarkerSmooth = createMarker(ctx, { title: "plane", marker: "hiro" });
 
   animate();
 
