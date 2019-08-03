@@ -1,8 +1,8 @@
 export default function initialize() {
   const scene = new THREE.Scene();
 
-  let ambientLight = new THREE.AmbientLight(0xff0fff, 0.5);
-  var light = new THREE.DirectionalLight(0xffffff, 2);
+  let ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+  var light = new THREE.DirectionalLight(0xffffff, 0.5);
   light.position.set(30, 30, 30);
   scene.add(light);
   scene.add(ambientLight);
@@ -14,8 +14,15 @@ export default function initialize() {
     antialias: true,
     alpha: true
   });
-  renderer.setClearColor(new THREE.Color("purple"), 0);
-  renderer.setSize(640, 480);
+
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  renderer.setSize(window.innerWidth * 2, window.innerHeight * 2);
+
+  renderer.domElement.style.width = w;
+  renderer.domElement.style.height = h;
+  renderer.domElement.width = w * 2;
+  renderer.domElement.height = h * 2;
   renderer.domElement.style.position = "absolute";
   renderer.domElement.style.top = "0px";
   renderer.domElement.style.left = "0px";

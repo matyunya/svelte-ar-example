@@ -30,6 +30,19 @@ export default function createMarker(ctx, model, stopped) {
           mesh.position.y = 0.25;
 
           mesh.rotation.x = -Math.PI / 2;
+
+          var tween = new TWEEN.Tween(mesh.rotation).to(
+            { y: 2 * Math.PI },
+            6000
+          );
+
+          tween.onComplete(function() {
+            mesh.rotation.y = 0.25;
+            tween.start();
+          });
+
+          tween.start();
+
           markerRoot.add(mesh);
         });
 
@@ -45,7 +58,7 @@ export default function createMarker(ctx, model, stopped) {
           camera.position,
           vector.sub(camera.position).normalize()
         );
-        var intersects = ray.intersectObjects(mesh.children[0]);
+        var intersects = ray.intersectObjects(mesh.children);
 
         if (intersects.length > 0) {
           stopped.update(() => true);
@@ -86,9 +99,12 @@ export default function createMarker(ctx, model, stopped) {
     });
 
   const smoothedControls = new THREEx.ArSmoothedControls(markerRoot, {
-    lerpPosition: 0.8,
-    lerpQuaternion: 0.8,
-    lerpScale: 1
+    lerpPosition: 0.5,
+    lerpQuaternion: 0.5,
+    lerpScale: 0.5,
+    minVisibleDelay: 0.5,
+    minUnvisibleDelay: 0.5,
+    lerpStepDelay: 1 / 120
   });
 
   return {
