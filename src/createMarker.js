@@ -29,6 +29,10 @@ export default function createMarker(ctx, model, stopped) {
           mesh = group;
           mesh.position.y = 0.25;
 
+          mesh.scale.x = 0.5;
+          mesh.scale.y = 0.5;
+          mesh.scale.z = 0.5;
+
           mesh.rotation.x = -Math.PI / 2;
           markerRoot.add(mesh);
         });
