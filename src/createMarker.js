@@ -1,7 +1,7 @@
 export default function createMarker(ctx, model, stopped) {
   const { scene, arToolkitContext, camera } = ctx;
 
-  const { title, marker } = model;
+  const { title } = model;
 
   let mesh;
 
@@ -12,7 +12,7 @@ export default function createMarker(ctx, model, stopped) {
     markerRoot,
     {
       type: "pattern",
-      patternUrl: `data/${marker}.patt`
+      patternUrl: `data/${title}.patt`
     }
   );
 
@@ -49,15 +49,10 @@ export default function createMarker(ctx, model, stopped) {
           camera.position,
           vector.sub(camera.position).normalize()
         );
-        var intersects = ray.intersectObjects(mesh.children);
+        var intersects = ray.intersectObjects(mesh.children[0]);
 
         if (intersects.length > 0) {
-          stopped.update(() => true);
-          const video = document.getElementsByTagName("video")[0];
-          video.classList.add("blurred");
-
-          const alert = document.getElementById("alert");
-          alert.classList.add("visible");
+          stopped.update(() => title);
 
           new TWEEN.Tween(markerControls.object3d.matrix.elements)
             .to(
