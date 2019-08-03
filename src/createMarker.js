@@ -30,19 +30,6 @@ export default function createMarker(ctx, model, stopped) {
           mesh.position.y = 0.25;
 
           mesh.rotation.x = -Math.PI / 2;
-
-          var tween = new TWEEN.Tween(mesh.rotation).to(
-            { y: 2 * Math.PI },
-            6000
-          );
-
-          tween.onComplete(function() {
-            mesh.rotation.y = 0.25;
-            tween.start();
-          });
-
-          tween.start();
-
           markerRoot.add(mesh);
         });
 
