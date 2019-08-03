@@ -26,12 +26,12 @@ export default function createMarker(ctx, model, stopped) {
         .setMaterials(materials)
         .setPath("models/")
         .load(`${title}.obj`, function(group) {
-          mesh = group;
+          mesh = group.children[0];
           mesh.position.y = 0.25;
 
-          mesh.scale.x = 0.5;
-          mesh.scale.y = 0.5;
-          mesh.scale.z = 0.5;
+          mesh.scale.x = 0.3;
+          mesh.scale.y = 0.3;
+          mesh.scale.z = 0.3;
 
           mesh.rotation.x = -Math.PI / 2;
           markerRoot.add(mesh);
@@ -49,7 +49,7 @@ export default function createMarker(ctx, model, stopped) {
           camera.position,
           vector.sub(camera.position).normalize()
         );
-        var intersects = ray.intersectObjects(mesh.children[0]);
+        var intersects = ray.intersectObjects([mesh]);
 
         if (intersects.length > 0) {
           stopped.update(() => title);
@@ -57,25 +57,30 @@ export default function createMarker(ctx, model, stopped) {
           new TWEEN.Tween(markerControls.object3d.matrix.elements)
             .to(
               [
-                0.6,
-                -0.2,
-                -0.8,
+                0.878688156604767,
+                -0.015010415576398265,
+                -0.4771596789360045,
                 0,
-                0.5,
-                -0.15901045494538538,
-                0.5098486865292884,
+                0.3572618067264557,
+                -0.6422934532165527,
+                0.6781015396118164,
                 0,
-                -0.27955281995349657,
-                -0.9451791917551653,
-                0.1687793786989792,
+                -0.3166553378105162,
+                -0.7663110494613647,
+                -0.5590136051177979,
                 0,
-                -0.5172344446182242,
-                -0.18319368362426763,
-                -7.384635925292969,
+                -2.6200318336486808,
+                0.9250363111495968,
+                -7.904438018798828,
                 1
               ],
-              1000
+              3000
             )
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .start();
+
+          new TWEEN.Tween(mesh.scale)
+            .to({ x: 0.35, y: 0.35, z: 0.35 }, 20000)
             .easing(TWEEN.Easing.Quadratic.Out)
             .start();
         }
