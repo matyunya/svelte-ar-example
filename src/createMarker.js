@@ -1,4 +1,4 @@
-export default function createMarker(ctx, model) {
+export default function createMarker(ctx, model, stopped) {
   const { scene, arToolkitContext, camera } = ctx;
 
   const { title, marker } = model;
@@ -45,10 +45,10 @@ export default function createMarker(ctx, model) {
           camera.position,
           vector.sub(camera.position).normalize()
         );
-        var intersects = ray.intersectObjects([mesh]);
+        var intersects = ray.intersectObjects(mesh.children);
 
         if (intersects.length > 0) {
-          stop = true;
+          stopped.update(() => true);
           const video = document.getElementsByTagName("video")[0];
           video.classList.add("blurred");
 
@@ -91,5 +91,7 @@ export default function createMarker(ctx, model) {
     lerpScale: 1
   });
 
-  return () => smoothedControls.update(markerRoot);
+  return {
+    update: () => smoothedControls.update(markerRoot)
+  };
 }
