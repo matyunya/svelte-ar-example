@@ -21,10 +21,10 @@ ARjs.Context = THREEx.ArToolkitContext = function(parameters) {
     cameraParametersUrl: ARjs.Context.baseURL + "parameters/camera_para.dat",
 
     // tune the maximum rate of pose detection in the source image
-    maxDetectionRate: 30,
+    maxDetectionRate: 60,
     // resolution of at which we detect pose in the source image
-    canvasWidth: 640,
-    canvasHeight: 480,
+    canvasWidth: 1024,
+    canvasHeight: 768,
 
     // the patternRatio inside the artoolkit marker - artoolkit only
     patternRatio: 0.5,

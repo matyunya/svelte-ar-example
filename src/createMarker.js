@@ -45,7 +45,7 @@ export default function createMarker(ctx, model, stopped) {
           camera.position,
           vector.sub(camera.position).normalize()
         );
-        var intersects = ray.intersectObjects(mesh.children);
+        var intersects = ray.intersectObjects(mesh.children[0]);
 
         if (intersects.length > 0) {
           stopped.update(() => true);
