@@ -10,7 +10,7 @@
   let stopped = writable(false);
 
   const cont1 = createMarker(ctx, { title: "plane", marker: "8" }, stopped);
-  const cont2 = createMarker(ctx, { title: "lighthouse", marker: "13" }, stopped);
+  const cont2 = createMarker(ctx, { title: "lighthouse1", marker: "13" }, stopped);
 
   animate();
 

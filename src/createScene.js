@@ -1,15 +1,9 @@
 export default function initialize() {
   const scene = new THREE.Scene();
 
-  let ambientLight = new THREE.AmbientLight(0xffffff, 3);
-  var light = new THREE.SpotLight(0xff00fff, 1, 1000);
-  light.castShadow = true;
-  light.shadow.mapSize.width = 1024;
-  light.shadow.mapSize.height = 1024;
-  light.shadow.camera.near = 500;
-  light.shadow.camera.far = 4000;
-  light.shadow.camera.fov = 30;
-  light.position.set(50, 50, 50);
+  let ambientLight = new THREE.AmbientLight(0xff0fff, 0.5);
+  var light = new THREE.DirectionalLight(0xffffff, 2);
+  light.position.set(30, 30, 30);
   scene.add(light);
   scene.add(ambientLight);
 
