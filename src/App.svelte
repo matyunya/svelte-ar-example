@@ -62,17 +62,6 @@
   overflow: hidden;
 }
 
-.alert {
-	position: fixed;
-	top: 20%;
-	left: 50%;
-	font-size: 30px;
-	color: white;
-	opacity: 0;
-	transition: opacity 3s;
-	display: none;
-}
-
 :global(.visible) {
 	display: block;
 	opacity: 1;
@@ -136,6 +125,3 @@
   </Dialog>
 
 </div>
-
-
-<div id="alert" class="alert">ВОТ ТАКОТА</div>
