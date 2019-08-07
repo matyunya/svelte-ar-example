@@ -26,7 +26,7 @@ export default function createMarker(ctx, model, stopped) {
         .setMaterials(materials)
         .setPath("models/")
         .load(`${title}.obj`, function(group) {
-          mesh = group.children[0];
+          mesh = group;
           mesh.position.y = 0.25;
 
           mesh.scale.x = 0.3;

@@ -12,8 +12,14 @@
   let initialDialog = true;
   let showDialog = writable(false);
 
-  const cont1 = createMarker(ctx, { title: "plane" }, showDialog);
-  const cont2 = createMarker(ctx, { title: "lighthouse" }, showDialog);
+  const controls = [
+    "plane",
+    "lighthouse2",
+    "bublik",
+    "lift",
+    "ship",
+  ].map(title => createMarker(ctx, { title }, showDialog))
+
 
   animate();
 
@@ -24,12 +30,18 @@
 
   const titles = {
     plane: "Международный  коридор для малой  авиации «Аляска –  Сибирь»",
-    lighthouse: "МОЕЧОК"
+    lighthouse2: "МОЕЧОК",
+    bublik: "МОЕЧОК",
+    lift: "МОЕЧОК",
+    ship: "МОЕЧОК",
   };
   
   const descs = {
     plane: "По мере развития малой авиации в мире растет мобильность путешественников. Наиболее мощным рынком для малой авиации сегодня является Северная Америка (только на Аляске парк малой авиации – 12 тыс. самолетов). Идея – в обеспечении возможности безопасных трансконтинентальных перелетов из Америки в Юго-Восточную Азию для малых самолетов (через отрезок Ном/Фэрбанкс – Провидения/Анадырь). Необходимые мероприятия: – Аудит маршрута (порядок заявления рейсов, выявление сложностей, упрощение процедур) – Партнерство с ассоциациями авиаторов Аляски – Активный маркетинг на рынке Аляски и Юго-Восточной Азии – Проведение исторического воздушного парада к 80-летию Алсиба (2022 год) ",
-    lighthouse: "ОПЕСАНИЕ МОЕЧОК",
+    lighthouse2: "ОПЕСАНИЕ МОЕЧОК",
+    bublik: "ОПЕСАНИЕ МОЕЧОК",
+    lift: "ОПЕСАНИЕ МОЕЧОК",
+    ship: "ОПЕСАНИЕ МОЕЧОК",
   }
 
   let desc, title;
@@ -42,8 +54,7 @@
 
     ctx.updateScene();
 
-    cont1.update();
-    cont2.update();
+    controls.forEach(c => c.update());
   }
 
   function animate() {
@@ -81,7 +92,7 @@
 
 
 <div class="fixed top-0 left-0 h-full w-full z-50">
-  <img class="absolute right-0 top-0 mt-10 mr-10 z-50" width="70" src="chukotka.png" alt="chukotka">
+  <img class="absolute right-0 top-0 mt-16 mr-16 z-50 opacity-75" width="40" src="chukotka.png" alt="chukotka">
 
   <Dialog
     bind:value={$showDialog}

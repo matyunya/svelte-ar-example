@@ -1,14 +1,17 @@
 export default function initialize() {
   const scene = new THREE.Scene();
 
-  let ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-  var light = new THREE.DirectionalLight(0xffffff, 0.5);
-  light.position.set(30, 30, 30);
-  scene.add(light);
-  scene.add(ambientLight);
+  let ambientLight = new THREE.AmbientLight(0xfffff0, 1);
+  var light = new THREE.DirectionalLight(0xfff0ff, 5);
+  var spotLight = new THREE.DirectionalLight(0xff000f, 5);
+  light.position.set(-30, 30, 30);
+  spotLight.position.set(30, 50, 50);
 
   const camera = new THREE.Camera();
   scene.add(camera);
+  camera.add(light);
+  camera.add(ambientLight);
+  camera.add(spotLight);
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,

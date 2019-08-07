@@ -278,7 +278,7 @@ ARjs.MarkerControls.prototype._initArtoolkit = function() {
 
     var modelViewMatrix = new THREE.Matrix4().fromArray(event.data.matrix);
 
-    // console.log(modelViewMatrix, "ASDASD");
+    console.log("marker found");
     _this.updateWithModelViewMatrix(modelViewMatrix);
   }
 };
