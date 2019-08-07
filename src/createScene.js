@@ -1,9 +1,9 @@
 export default function initialize() {
   const scene = new THREE.Scene();
 
-  let ambientLight = new THREE.AmbientLight(0xfffff0, 1);
-  var light = new THREE.DirectionalLight(0xfff0ff, 5);
-  var spotLight = new THREE.DirectionalLight(0xff000f, 5);
+  let ambientLight = new THREE.AmbientLight(0xe3f2fd, 1);
+  var light = new THREE.DirectionalLight(0xe53935, 5);
+  var spotLight = new THREE.DirectionalLight(0x1565c0, 5);
   light.position.set(-30, 30, 30);
   spotLight.position.set(30, 50, 50);
 

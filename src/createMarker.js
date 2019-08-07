@@ -87,6 +87,7 @@ export default function createMarker(ctx, model, stopped) {
       }
 
       document.addEventListener("mousedown", onDocumentMouseDown, false);
+      document.addEventListener("touchstart", onDocumentMouseDown, false);
     });
 
   const smoothedControls = new THREEx.ArSmoothedControls(markerRoot, {
