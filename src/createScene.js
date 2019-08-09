@@ -23,7 +23,7 @@ export default function initialize() {
 
   const w = window.innerWidth;
   const h = window.innerHeight;
-  renderer.setSize(window.innerWidth * 2, bwindow.innerHeight * 2);
+  renderer.setSize(window.innerWidth * 2, window.innerHeight * 2);
 
   renderer.domElement.style.width = w;
   renderer.domElement.style.height = h;
