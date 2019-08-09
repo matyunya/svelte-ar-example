@@ -1,17 +1,20 @@
 export default function initialize() {
   const scene = new THREE.Scene();
 
-  let ambientLight = new THREE.AmbientLight(0xe3f2fd, 1);
-  var light = new THREE.DirectionalLight(0xe53935, 5);
-  var spotLight = new THREE.DirectionalLight(0x1565c0, 5);
+  let ambientLight = new THREE.AmbientLight(0xe3f2fd, 1.5);
+  var light = new THREE.DirectionalLight(0xf5ee78, 1.5);
+  var spotLight = new THREE.DirectionalLight(0x1565c0, 1.5);
   light.position.set(-30, 30, 30);
   spotLight.position.set(30, 50, 50);
 
   const camera = new THREE.Camera();
   scene.add(camera);
-  camera.add(light);
-  camera.add(ambientLight);
-  camera.add(spotLight);
+  const lights = [ambientLight, light, spotLight];
+
+  lights.forEach(l => {
+    l.castShadow = true;
+    camera.add(l);
+  });
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -20,7 +23,7 @@ export default function initialize() {
 
   const w = window.innerWidth;
   const h = window.innerHeight;
-  renderer.setSize(window.innerWidth * 2, window.innerHeight * 2);
+  renderer.setSize(window.innerWidth * 2, bwindow.innerHeight * 2);
 
   renderer.domElement.style.width = w;
   renderer.domElement.style.height = h;
@@ -29,6 +32,8 @@ export default function initialize() {
   renderer.domElement.style.position = "absolute";
   renderer.domElement.style.top = "0px";
   renderer.domElement.style.left = "0px";
+  renderer.physicallyCorrectLights = true;
+  // renderer.shadowMap.enabled = true;
   document.body.appendChild(renderer.domElement);
 
   const arToolkitSource = new THREEx.ArToolkitSource({
@@ -83,6 +88,7 @@ export default function initialize() {
     arToolkitSource,
     arToolkitContext,
     updateScene,
-    render
+    render,
+    lights
   };
 }
