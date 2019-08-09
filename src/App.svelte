@@ -29,6 +29,20 @@
     document.getElementsByTagName("canvas")[0].style.pointerEvents = "none";
   })
 
+  function openFullscreen() {
+    var elem = document.documentElement;
+
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    }
+  }
+
   const titles = {
     plane: "Международный  коридор для малой  авиации «Аляска –  Сибирь»",
     lighthouse2: "Международный  коридор для малой  авиации «Аляска –  Сибирь»",
@@ -136,6 +150,7 @@
       outlined
       on:click={(e) => {
         e.preventDefault();
+        openFullscreen();
         initialDialog = false;
       }}
       color="primary"
