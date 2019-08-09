@@ -17,7 +17,6 @@
     // "lighthouse2",
     // "bublik",
     // "lift",
-    "bublik",
     "ship",
   ].map(title => createMarker(ctx, { title }, showDialog))
 

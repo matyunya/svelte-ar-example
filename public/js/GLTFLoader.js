@@ -1533,7 +1533,7 @@ THREE.GLTFLoader = ( function () {
 			roughness: 1,
 			transparent: false,
 			depthTest: true,
-			side: FrontSide
+			side: THREE.FrontSide
 		} );
 
 		return defaultMaterial;

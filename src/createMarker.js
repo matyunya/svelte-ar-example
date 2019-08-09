@@ -3,7 +3,7 @@ export default function createMarker(ctx, model, stopped) {
 
   const { title } = model;
 
-  let mesh;
+  let mesh, s;
 
   const markerRoot = new THREE.Group();
   scene.add(markerRoot);
@@ -30,18 +30,20 @@ export default function createMarker(ctx, model, stopped) {
 
   new THREE.GLTFLoader()
     .setPath("models/")
-    .load(`${title}.gltf`, function(group) {
+    .load(`${title}.glb`, function(group) {
       mesh = group.scene;
       console.log(mesh);
+
       mesh.position.y = 0.25;
 
-      mesh.scale.x = 0.3;
-      mesh.scale.y = 0.3;
-      mesh.scale.z = 0.3;
+      mesh.children.forEach(c => (c.castShadow = true));
 
-      let s;
-      setTimeout(() => {
-        s = setInterval(() => (mesh.rotation.y += 0.01), 40);
+      mesh.scale.x = 1;
+      mesh.scale.y = 1;
+      mesh.scale.z = 1;
+
+      setTimeout(function() {
+        s = setInterval(() => (mesh.rotation.y += 0.05), 20);
       }, 1000 - 200);
 
       mesh.rotation.x = -Math.PI / 2;
@@ -112,12 +114,18 @@ export default function createMarker(ctx, model, stopped) {
   document.addEventListener("touchstart", onDocumentMouseDown, false);
 
   const smoothedControls = new THREEx.ArSmoothedControls(markerRoot, {
-    lerpPosition: 0.5,
-    lerpQuaternion: 0.5,
-    lerpScale: 0.5,
-    minVisibleDelay: 0.5,
-    minUnvisibleDelay: 0.5,
-    lerpStepDelay: 1 / 120
+    // lerp coeficient for the position - between [0,1] - default to 1
+    lerpPosition: 0.8,
+    // lerp coeficient for the quaternion - between [0,1] - default to 1
+    lerpQuaternion: 0.2,
+    // lerp coeficient for the scale - between [0,1] - default to 1
+    lerpScale: 0.7,
+    // delay for lerp fixed steps - in seconds - default to 1/120
+    lerpStepDelay: 1 / 60,
+    // minimum delay the sub-control must be visible before this controls become visible - default to 0 seconds
+    minVisibleDelay: 0.0,
+    // minimum delay the sub-control must be unvisible before this controls become unvisible - default to 0 seconds
+    minUnvisibleDelay: 0.2
   });
 
   return {
