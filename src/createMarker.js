@@ -34,17 +34,18 @@ export default function createMarker(ctx, model, stopped) {
       mesh = group.scene;
       console.log(mesh);
 
-      mesh.position.y = 0.25;
+      // mesh.children.forEach(c => {
+      //   c.castShadow = true;
+      //   c.receiveShadow = true;
+      // });
+
+      // mesh.position.y = 0.25;
 
       mesh.children.forEach(c => (c.castShadow = true));
 
-      mesh.scale.x = 1;
-      mesh.scale.y = 1;
-      mesh.scale.z = 1;
-
-      setTimeout(function() {
-        s = setInterval(() => (mesh.rotation.y += 0.05), 20);
-      }, 1000 - 200);
+      // mesh.scale.x = 1;
+      // mesh.scale.y = 1;
+      // mesh.scale.z = 1;
 
       mesh.rotation.x = -Math.PI / 2;
       markerRoot.add(mesh);
@@ -68,21 +69,21 @@ export default function createMarker(ctx, model, stopped) {
       new TWEEN.Tween(markerControls.object3d.matrix.elements)
         .to(
           [
-            0.9616535305976868,
-            0.03676606714725506,
-            0.2717910110950471,
+            0.9946019053459167,
+            -0.09622358530759799,
+            0.038838528096676,
             0,
-            -0.26652061939239513,
-            -0.10857757925987241,
-            0.9576937556266785,
+            -0.07378231734037406,
+            -0.3926204144954681,
+            0.9167366623878479,
             0,
-            0.06472101062536252,
-            -0.9934077858924866,
-            -0.09461507946252816,
+            -0.07296279072761519,
+            -0.9146525859832764,
+            -0.39760044217109675,
             0,
-            -0.8124303221702572,
-            -0.22422127425670635,
-            -2.9146223068237305,
+            -1.6659895181655877,
+            -0.07961864024400732,
+            -4.709328651428223,
             1
           ],
           1200
@@ -91,20 +92,33 @@ export default function createMarker(ctx, model, stopped) {
         .start();
 
       new TWEEN.Tween(mesh.scale)
-        .to({ x: 0.12, y: 0.12, z: 0.1 }, 1000 - 200)
+        .to({ x: 0.5, y: 0.5, z: 0.5 }, 1000 - 200)
         .easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
       ctx.lights.forEach(l => {
-        new TWEEN.Tween(l).to({ intensity: 0.8 }, 1000).start();
+        new TWEEN.Tween(l).to({ intensity: 3 }, 1000).start();
       });
 
       stopped.update(() => ({
         title,
         onClose: () => {
-          ctx.lights.forEach(l => {
-            new TWEEN.Tween(l).to({ intensity: 0.7 }, 1000).start();
+          let t;
+          stopped.update(v => {
+            t = v.title;
+            return v;
           });
+
+          if (t === title) return;
+
+          ctx.lights.forEach(l => {
+            new TWEEN.Tween(l).to({ intensity: 1 }, 1000).start();
+          });
+
+          new TWEEN.Tween(mesh.scale)
+            .to({ x: 1, y: 1, z: 1 }, 1000 - 200)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .start();
         }
       }));
     }
