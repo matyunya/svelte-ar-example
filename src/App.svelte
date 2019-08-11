@@ -113,7 +113,7 @@
 }
 </style>
 
-<svelte:window on:click={handleClick} on:touchend={handleClick} />
+<svelte:window on:click={handleClick} />
 
 
 <div class="fixed top-0 left-0 h-full w-full z-50">
@@ -149,9 +149,9 @@
     <Button
       outlined
       on:click={(e) => {
+        initialDialog = false;
         e.preventDefault();
         openFullscreen();
-        initialDialog = false;
       }}
       color="primary"
       remove="hover:bg-primary-trans"
