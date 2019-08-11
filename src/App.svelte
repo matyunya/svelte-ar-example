@@ -79,7 +79,11 @@
   }
 
   function handleClick() {
-    if (!$showDialog) return;
+    if (!$showDialog) {
+      initialDialog = false;
+      openFullscreen();
+      return;
+    }
 
     $showDialog.onClose();
   }
@@ -148,11 +152,6 @@
     wrapperClasses="items-center z-10 rounded bg-transparent p-4 text-white text-lg relative">
     <Button
       outlined
-      on:click={(e) => {
-        initialDialog = false;
-        e.preventDefault();
-        openFullscreen();
-      }}
       color="primary"
       remove="hover:bg-primary-trans"
       add="hover:bg-primary-transDark"
