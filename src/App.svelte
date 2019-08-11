@@ -13,10 +13,10 @@
   let showDialog = writable(false);
 
   const controls = [
-    // "plane",
-    // "lighthouse2",
-    // "bublik",
-    // "lift",
+    "plane",
+    "lighthouse2",
+    "bublik",
+    "lift",
     "ship",
   ].map(title => createMarker(ctx, { title }, showDialog))
 
@@ -117,7 +117,7 @@
 }
 </style>
 
-<svelte:window on:click={handleClick} />
+<svelte:window on:click={handleClick} on:touchend={handleClick} />
 
 
 <div class="fixed top-0 left-0 h-full w-full z-50">
@@ -156,7 +156,7 @@
       remove="hover:bg-primary-trans"
       add="hover:bg-primary-transDark"
     >
-      Наведите планшет на любую отметку и нажмите на фигурку
+      Наведите планшет на любую отметку и нажмите на фигурку. TEST TOUCH
     </Button>
   </Dialog>
 

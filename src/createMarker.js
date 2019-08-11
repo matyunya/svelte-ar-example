@@ -28,28 +28,26 @@ export default function createMarker(ctx, model, stopped) {
 
   markerRoot.add(cube);
 
-  new THREE.GLTFLoader()
-    .setPath("models/")
-    .load(`${title}.glb`, function(group) {
-      mesh = group.scene;
-      console.log(mesh);
+  new THREE.GLTFLoader().setPath("models/").load(`ship.glb`, function(group) {
+    mesh = group.scene;
+    console.log(mesh);
 
-      // mesh.children.forEach(c => {
-      //   c.castShadow = true;
-      //   c.receiveShadow = true;
-      // });
+    // mesh.children.forEach(c => {
+    //   c.castShadow = true;
+    //   c.receiveShadow = true;
+    // });
 
-      // mesh.position.y = 0.25;
+    // mesh.position.y = 0.25;
 
-      mesh.children.forEach(c => (c.castShadow = true));
+    mesh.children.forEach(c => (c.castShadow = true));
 
-      // mesh.scale.x = 1;
-      // mesh.scale.y = 1;
-      // mesh.scale.z = 1;
+    // mesh.scale.x = 1;
+    // mesh.scale.y = 1;
+    // mesh.scale.z = 1;
 
-      mesh.rotation.x = -Math.PI / 2;
-      markerRoot.add(mesh);
-    });
+    mesh.rotation.x = -Math.PI / 2;
+    markerRoot.add(mesh);
+  });
 
   function onDocumentMouseDown(event) {
     event.preventDefault();
