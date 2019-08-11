@@ -24,7 +24,7 @@ ARjs.MarkerControls = THREEx.ArMarkerControls = function(
     // change matrix mode - [modelViewMatrix, cameraTransformMatrix]
     changeMatrixMode: "modelViewMatrix",
     // minimal confidence in the marke recognition - between [0, 1] - default to 1
-    minConfidence: 0.01
+    minConfidence: 0.1
   };
 
   // sanity check

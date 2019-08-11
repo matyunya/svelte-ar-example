@@ -89,6 +89,7 @@
 :global(body) {
   margin: 0px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 :global(.visible) {
@@ -112,7 +113,7 @@
 }
 </style>
 
-<svelte:window on:click={handleClick} />
+<svelte:window on:click={handleClick} on:touchend={handleClick} />
 
 
 <div class="fixed top-0 left-0 h-full w-full z-50">
