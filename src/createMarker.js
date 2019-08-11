@@ -125,7 +125,7 @@ export default function createMarker(ctx, model, stopped) {
   }
 
   document.addEventListener("mousedown", onDocumentMouseDown, false);
-  document.addEventListener("touchstart", onDocumentMouseDown, false);
+  document.addEventListener("touchend", onDocumentMouseDown, false);
 
   const smoothedControls = new THREEx.ArSmoothedControls(markerRoot, {
     // lerp coeficient for the position - between [0,1] - default to 1
